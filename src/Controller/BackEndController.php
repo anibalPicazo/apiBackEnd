@@ -59,7 +59,7 @@ class BackEndController extends Controller
      public function loginUsuario(){
 
         $helpers = $this -> get(Helpers::class);
-        echo "hola";
+        echo "hola caracola";
         die();
      }
 
