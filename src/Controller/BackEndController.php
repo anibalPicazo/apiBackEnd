@@ -10,6 +10,8 @@ use App\Entity\Video;
 use App\Entity\Comment;
 use App\Service\Helpers;
 
+use Symfony\Component\HttpFoundation\Request;
+
 
 
 use Symfony\Component\Serializer\Serializer;
@@ -17,6 +19,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Response;
+
 
 
 
@@ -40,7 +43,6 @@ class BackEndController extends Controller
             'msg'=>'usuario no existente'
           );
         
-        
 
           return  $helpers->json($users);
   
@@ -56,11 +58,28 @@ class BackEndController extends Controller
             
     }
 
-     public function loginUsuario(){
+     public function loginAction(Request $request)
+     {
 
-        $helpers = $this -> get(Helpers::class);
-        echo "hola caracola";
-        die();
+        $helpers = $this->get( Helpers::class);
+        $data = array(
+            'status'=> 'error',
+            'code'=> 400,
+            'msg'=>'usuario no existente'
+          );
+        
+        
+
+          return  $helpers->json($users);
+     }
+     /**
+     *
+     * @Route("/hola", name="hola")
+     */
+
+     public function hola(){
+         echo"hello";
+         die();
      }
 
 

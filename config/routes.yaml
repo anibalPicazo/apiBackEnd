@@ -1,8 +1,11 @@
+
 index:
     path: /
     controller: App\Controller\BackEndController::index
 
-login:
-    path: login
-    controller:  App\Controller\BackEndController::loginUsuario
-    methods: POST
+prueba:
+    path: /prueba
+    controller: App\Controller\DefaultController::prueba
+    
+
+
