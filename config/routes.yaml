@@ -4,8 +4,8 @@ index:
     controller: App\Controller\BackEndController::index
 
 prueba:
-    path: /prueba
-    controller: App\Controller\DefaultController::prueba
+    path: /login
+    controller: App\Controller\DefaultController::loginAction
     
 
 
