@@ -47,3 +47,7 @@
 # Embedded web-server pid file
 /.web-server-pid
 var/log/dev.log
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

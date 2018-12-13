@@ -1,0 +1,20 @@
+version: "3.1"
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    container_name: kaam-mysql_video
+    restart: always
+    ports:
+      - "3333:3306"
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=22101984Pch
+      - MYSQL_USER=kaam
+      - MYSQL_DATABASE=videoProject
+
+volumes:
+  mysql:

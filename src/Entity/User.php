@@ -5,6 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\UserInterface;
+use JMS\Serializer\Annotation as Serializer;
+use DateTime;
+
+
 
 /**
  * User
@@ -12,8 +17,12 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Table(name="users")
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
+
+    const ROLE_ROOT = "ROLE_ROOT";
+    const ROLE_APP_ADMIN = "ROLE_APP_ROOT";
+
     /**
      * @var int
      *
@@ -24,11 +33,11 @@ class User
     private $id;
 
     /**
-     * @var string|null
+     * @var array
      *
-     * @ORM\Column(name="role", type="string", length=20, nullable=true)
+     * @ORM\Column(name="roles", type="json_array")
      */
-    private $role;
+    protected $roles = [];
 
     /**
      * @var string|null
@@ -36,6 +45,11 @@ class User
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
+
+    /**
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
+     */
+    protected $username;
 
     /**
      * @var string|null
@@ -92,16 +106,31 @@ class User
         return $this->id;
     }
 
-    public function getRole(): ?string
+    /**
+     * Set roles
+     *
+     * @param array $roles
+     *
+     * @return User
+     */
+    public function setRoles($roles)
     {
-        return $this->role;
-    }
-
-    public function setRole(?string $role): self
-    {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        return ["ROLE_USER"];
+    }
+    public function eraseCredentials()
+    {
     }
 
     public function getName(): ?string
@@ -114,6 +143,10 @@ class User
         $this->name = $name;
 
         return $this;
+    }
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     public function getSurname(): ?string
@@ -131,6 +164,9 @@ class User
     public function getEmail(): ?string
     {
         return $this->email;
+    }
+    public function getSalt()
+    {
     }
 
     public function setEmail(?string $email): self
