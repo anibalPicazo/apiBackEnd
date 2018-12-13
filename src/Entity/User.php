@@ -66,11 +66,10 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     * @ORM\Column(name="password", type="string", length=255)
+     * @Serializer\Exclude()
      */
-    private $password;
+    protected $password;
 
     /**
      * @var string|null
@@ -148,6 +147,16 @@ class User implements UserInterface
     {
         return $this->username;
     }
+    /**
+     * @param mixed $username
+     * @return self
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
 
     public function getSurname(): ?string
     {
@@ -176,17 +185,25 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @return mixed
+     */
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(?string $password): self
+    /**
+     * @param mixed $password
+     * @return self
+     */
+    public function setPassword($password)
     {
         $this->password = $password;
 
         return $this;
     }
+
 
     public function getImage(): ?string
     {
