@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PruebaController extends FOSRestController
 {
     /**
-     * @Rest\Get("/index")
+     * @Rest\Get("/v1/index")
      */
     public function index()
     {
